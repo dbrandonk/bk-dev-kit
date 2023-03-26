@@ -1,8 +1,9 @@
 ARG BASE_IMAGE
-ARG GIT_EMAIL
 
 FROM ${BASE_IMAGE}
 WORKDIR ..
+
+ARG GIT_EMAIL
 
 RUN apt update && apt upgrade -y
 RUN apt install \
@@ -30,7 +31,7 @@ RUN rm -rf ./google-chrome*.deb
 RUN yes| unminimize
 
 RUN git config --global user.name "Brandon Knape"
-RUN git config --global user.email "${GIT_EMAIL}"
+RUN git config --global user.email "$GIT_EMAIL"
 RUN git config --global diff.tool vimdiff
 RUN git config --global difftool.prompt false
 RUN git config --global difftool.trustExitCode true
