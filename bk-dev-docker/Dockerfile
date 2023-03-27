@@ -32,9 +32,9 @@ RUN rm -rf ./.fzf
 RUN apt install fzf -y
 
 # installing google chrome
-# RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# RUN apt install ./google-chrome*.deb -y
-# RUN rm -rf ./google-chrome*.deb
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN DEBIAN_FRONTEND=noninteractive apt install ./google-chrome*.deb -y
+RUN rm -rf ./google-chrome*.deb
 
 # unminimize the docker
 RUN yes| unminimize
