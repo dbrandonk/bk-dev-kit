@@ -1,24 +1,30 @@
 ARG BASE_IMAGE
+# ubuntu:20.04
 
 FROM ${BASE_IMAGE}
 WORKDIR ..
 
 ARG GIT_EMAIL
 
-RUN apt update && apt upgrade -y
-RUN apt install \
-checkinstall \
-clang-tidy \
-ctags \
-htop \
-python3-colcon-argcomplete \
-silversearcher-ag \
-xclip \
-yamllint \
---fix-missing -y
+RUN apt autoremove --purge
+RUN apt clean 
+RUN apt update
+RUN apt upgrade -y
 
-# fixing install of fzf
-RUN ./.fzf/uninstall
+RUN apt install checkinstall -y --fix-missing
+RUN apt install clang-tidy -y
+RUN apt install ctags -y
+RUN apt install curl -y
+RUN apt install git -y
+RUN apt install htop -y
+RUN apt install silversearcher-ag -y
+RUN apt install ranger -y
+RUN apt install xclip -y
+RUN apt install wget -y
+RUN apt install yamllint -y
+
+# fixing install of fzf if there is an issue
+RUN ./.fzf/uninstall || true
 RUN rm -rf ./.fzf
 RUN apt install fzf -y
 
@@ -65,6 +71,6 @@ RUN rm -rf vim
 
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 RUN vim -c ':PlugInstall' -c ':qall'
-RUN mkdir .vim/tmp
+RUN mkdir -p .vim/tmp
 
 ENTRYPOINT ["/bin/bash"]
