@@ -18,6 +18,9 @@ RUN apt install curl -y
 RUN apt install git -y
 RUN apt install htop -y
 RUN apt install silversearcher-ag -y
+RUN apt install tig -y
+RUN apt install tmux -y
+RUN apt install tree -y
 RUN apt install ranger -y
 RUN apt install xclip -y
 RUN apt install wget -y
@@ -29,9 +32,9 @@ RUN rm -rf ./.fzf
 RUN apt install fzf -y
 
 # installing google chrome
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-RUN apt install ./google-chrome*.deb -y
-RUN rm -rf ./google-chrome*.deb
+# RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+# RUN apt install ./google-chrome*.deb -y
+# RUN rm -rf ./google-chrome*.deb
 
 # unminimize the docker
 RUN yes| unminimize
@@ -50,7 +53,6 @@ RUN mv .dotfiles/.bashrc-extra .bashrc-extra
 
 # Doing some hacky writing to the .bashrc
 RUN echo '. $HOME/.bashrc-extra' >> .bashrc
-RUN echo 'source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash' >> ~/.bashrc
 # This is a real hacky solution so tmux start when the container starts without it in the entrypoint call because that breaks the vim coloring for some reason
 RUN echo 'export TERM=xterm-256color' >> .bashrc
 RUN echo 'if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then' >> .bashrc
