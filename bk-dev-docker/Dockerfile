@@ -2,7 +2,7 @@ ARG BASE_IMAGE
 # ubuntu:20.04
 
 FROM ${BASE_IMAGE}
-WORKDIR ..
+WORKDIR /root
 
 ARG GIT_EMAIL
 
@@ -17,11 +17,13 @@ RUN apt install ctags -y
 RUN apt install curl -y
 RUN apt install git -y
 RUN apt install htop -y
+RUN apt install man -y
 RUN apt install silversearcher-ag -y
 RUN apt install tig -y
 RUN apt install tmux -y
 RUN apt install tree -y
 RUN apt install ranger -y
+RUN apt install vim -y
 RUN apt install xclip -y
 RUN apt install wget -y
 RUN apt install yamllint -y
