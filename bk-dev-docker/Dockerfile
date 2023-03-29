@@ -15,11 +15,14 @@ RUN apt install checkinstall -y --fix-missing
 RUN apt install clang-tidy -y
 RUN apt install ctags -y
 RUN apt install curl -y
+RUN apt install feh -y
 RUN apt install git -y
 RUN apt install htop -y
 RUN apt install man -y
 RUN apt install silversearcher-ag -y
+RUN apt install stow -y
 RUN apt install tig -y
+RUN apt install tldr -y
 RUN apt install tmux -y
 RUN apt install tree -y
 RUN apt install ranger -y
@@ -27,6 +30,8 @@ RUN apt install vim -y
 RUN apt install xclip -y
 RUN apt install wget -y
 RUN apt install yamllint -y
+
+RUN tldr --update
 
 # fixing install of fzf if there is an issue
 RUN ./.fzf/uninstall || true
