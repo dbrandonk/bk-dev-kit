@@ -61,6 +61,13 @@ RUN echo 'if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ sc
 RUN echo 'exec tmux' >> .bashrc
 RUN echo 'fi' >> .bashrc
 
+# making the prompt pretty. ;)
+RUN git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
+run echo 'source $HOME/.bash-git-prompt/gitprompt.sh' >> .bashrc
+RUN apt-get install locales -y
+RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
+
 RUN mv .dotfiles/.tmux.conf .tmux.conf
 RUN mv .dotfiles/.vimrc .vimrc
 RUN rm .dotfiles -rf
