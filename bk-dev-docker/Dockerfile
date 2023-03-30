@@ -67,6 +67,7 @@ RUN echo 'exec tmux' >> .bashrc
 RUN echo 'fi' >> .bashrc
 
 # making the prompt pretty. ;)
+RUN rm -rf ~/.bash-git-prompt # remove this if it exists for some reason.
 RUN git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
 run echo 'source $HOME/.bash-git-prompt/gitprompt.sh' >> .bashrc
 RUN apt-get install locales -y
