@@ -44,7 +44,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install ./google-chrome*.deb -y
 RUN rm -rf ./google-chrome*.deb
 
 # unminimize the docker
-RUN yes| unminimize
+RUN yes | unminimize || true
 
 RUN git config --global user.name "Brandon Knape"
 RUN git config --global user.email "$GIT_EMAIL"
