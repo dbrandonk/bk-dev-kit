@@ -29,6 +29,7 @@ RUN apt install ranger -y
 RUN apt install vim -y
 RUN apt install xclip -y
 RUN apt install wget -y
+RUN apt install wormhole -y
 RUN apt install yamllint -y
 
 RUN tldr --update
