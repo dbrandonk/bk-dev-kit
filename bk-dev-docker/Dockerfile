@@ -7,42 +7,42 @@ WORKDIR /root
 ARG GIT_EMAIL
 
 # getting apt in a happy state
-RUN apt autoremove --purge
-RUN apt clean 
-RUN apt update
-RUN apt upgrade -y
+RUN apt autoremove --purge \
+&& apt clean \
+&& apt update \
+&& apt upgrade -y
 
 # export timezone and place timezone data /etc/timezone
 ENV TZ=America/Chicago
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # installing packages I like
-RUN apt install aspell -y 
-RUN apt install checkinstall -y --fix-missing
-RUN apt install clang-tidy -y
-RUN apt install ctags -y
-RUN apt install curl -y
-RUN apt install feh -y
-RUN apt install git -y
-RUN apt install htop -y
-RUN apt install man -y
-RUN apt install mypy -y
-RUN apt install pip -y
-RUN apt install pylint -y
-RUN apt install silversearcher-ag -y
-RUN apt install stow -y
-RUN apt install sudo -y
-RUN apt install tig -y
-RUN apt install tldr -y
-RUN apt install tmux -y
-RUN apt install tree -y
-RUN apt install ranger -y
-RUN apt install vim -y
-RUN apt install vim-gtk -y
-RUN apt install xclip -y
-RUN apt install wget -y
-RUN apt install wormhole -y
-RUN apt install yamllint -y
+RUN apt install aspell -y \
+&& apt install checkinstall -y --fix-missing \
+&& apt install clang-tidy -y \
+&& apt install ctags -y \
+&& apt install curl -y \
+&& apt install feh -y \
+&& apt install git -y \
+&& apt install htop -y \
+&& apt install man -y \
+&& apt install mypy -y \
+&& apt install pip -y \
+&& apt install pylint -y \
+&& apt install silversearcher-ag -y \
+&& apt install stow -y \
+&& apt install sudo -y \
+&& apt install tig -y \
+&& apt install tldr -y \
+&& apt install tmux -y \
+&& apt install tree -y \
+&& apt install ranger -y \
+&& apt install vim -y \
+&& apt install vim-gtk -y \
+&& apt install xclip -y \
+&& apt install wget -y \
+&& apt install wormhole -y \
+&& apt install yamllint -y
 
 RUN pip install autopep8
 
@@ -60,15 +60,15 @@ RUN rm -rf ./google-chrome*.deb
 RUN yes | unminimize || true
 
 # git config
-RUN git config --global user.name "Brandon Knape"
-RUN git config --global user.email "$GIT_EMAIL"
-RUN git config --global diff.tool vimdiff
-RUN git config --global difftool.prompt false
-RUN git config --global difftool.trustExitCode true
-RUN git config --global merge.tool vimdiff
-RUN git config --global mergetool.prompt false
-RUN git config --global mergetool.trustExitCode true
-RUN git config --global --add safe.directory '*'
+RUN git config --global user.name "Brandon Knape" \
+&& git config --global user.email "$GIT_EMAIL" \
+&& git config --global diff.tool vimdiff \
+&& git config --global difftool.prompt false \
+&& git config --global difftool.trustExitCode true \
+&& git config --global merge.tool vimdiff \
+&& git config --global mergetool.prompt false \
+&& git config --global mergetool.trustExitCode true \
+&& git config --global --add safe.directory '*'# getting apt in a happy state
 
 # doing whole bunch of dot file stuff.
 RUN git clone https://github.com/dbrandonk/.dotfiles
