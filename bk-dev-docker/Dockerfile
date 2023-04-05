@@ -68,7 +68,7 @@ RUN git config --global user.name "Brandon Knape" \
 && git config --global merge.tool vimdiff \
 && git config --global mergetool.prompt false \
 && git config --global mergetool.trustExitCode true \
-&& git config --global --add safe.directory '*'# getting apt in a happy state
+&& git config --global --add safe.directory '*'
 
 # doing whole bunch of dot file stuff.
 RUN git clone https://github.com/dbrandonk/.dotfiles
