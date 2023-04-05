@@ -12,7 +12,12 @@ RUN apt clean
 RUN apt update
 RUN apt upgrade -y
 
+# export timezone and place timezone data /etc/timezone
+ENV TZ=America/Chicago
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # installing packages I like
+RUN apt install aspell -y 
 RUN apt install checkinstall -y --fix-missing
 RUN apt install clang-tidy -y
 RUN apt install ctags -y
@@ -21,18 +26,25 @@ RUN apt install feh -y
 RUN apt install git -y
 RUN apt install htop -y
 RUN apt install man -y
+RUN apt install mypy -y
+RUN apt install pip -y
+RUN apt install pylint -y
 RUN apt install silversearcher-ag -y
 RUN apt install stow -y
+RUN apt install sudo -y
 RUN apt install tig -y
 RUN apt install tldr -y
 RUN apt install tmux -y
 RUN apt install tree -y
 RUN apt install ranger -y
 RUN apt install vim -y
+RUN apt install vim-gtk -y
 RUN apt install xclip -y
 RUN apt install wget -y
 RUN apt install wormhole -y
 RUN apt install yamllint -y
+
+RUN pip install autopep8
 
 # fixing install of fzf if there is an issue
 RUN ./.fzf/uninstall || true
