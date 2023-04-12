@@ -38,13 +38,15 @@ RUN apt install aspell -y \
 && apt install tree -y \
 && apt install ranger -y \
 && apt install vim -y \
-&& apt install vim-gtk -y \
+&& apt install vim-gtk3 -y \
 && apt install xclip -y \
 && apt install wget -y \
 && apt install wormhole -y \
 && apt install yamllint -y
 
-RUN pip install autopep8
+RUN pip install autopep8 \
+&& pip install ipython3 \
+&& pip install monkeytype \
 
 # fixing install of fzf if there is an issue
 RUN ./.fzf/uninstall || true
@@ -97,9 +99,9 @@ RUN rm .ssh -rf
 ADD .ssh .ssh
 
 # getting latest version of vim
-RUN git clone https://github.com/vim/vim.git
-RUN cd vim/src && make && checkinstall --pkgname vim -y
-RUN rm -rf vim
+# RUN git clone https://github.com/vim/vim.git
+# RUN cd vim/src && make && checkinstall --pkgname vim -y
+# RUN rm -rf vim
 
 # All the vim plugins.
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
