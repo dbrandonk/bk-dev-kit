@@ -46,7 +46,7 @@ RUN apt install aspell -y \
 
 RUN pip install autopep8 \
 && pip install ipython3 \
-&& pip install monkeytype \
+&& pip install monkeytype
 
 # fixing install of fzf if there is an issue
 RUN ./.fzf/uninstall || true
