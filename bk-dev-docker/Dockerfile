@@ -26,7 +26,6 @@ RUN apt install aspell -y \
 && apt install git -y \
 && apt install htop -y \
 && apt install man -y \
-&& apt install mypy -y \
 && apt install pip -y \
 && apt install pylint -y \
 && apt install silversearcher-ag -y \
@@ -45,8 +44,9 @@ RUN apt install aspell -y \
 && apt install yamllint -y
 
 RUN pip install autopep8 \
-&& pip install ipython3 \
-&& pip install monkeytype
+&& pip install ipython \
+&& pip install monkeytype \
+&& pip install mypy
 
 # fixing install of fzf if there is an issue
 RUN ./.fzf/uninstall || true
