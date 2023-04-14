@@ -18,6 +18,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # installing packages I like
 RUN apt install aspell -y \
+&& apt install bash-completion \
 && apt install checkinstall -y --fix-missing \
 && apt install clang-tidy -y \
 && apt install ctags -y \
@@ -78,10 +79,10 @@ RUN mv .dotfiles/.bashrc-extra .bashrc-extra
 # Doing some hacky writing to the .bashrc
 RUN echo '. $HOME/.bashrc-extra' >> .bashrc
 # This is a real hacky solution so tmux start when the container starts without it in the entrypoint call because that breaks the vim coloring for some reason
-RUN echo 'export TERM=xterm-256color' >> .bashrc
-RUN echo 'if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then' >> .bashrc
-RUN echo 'exec tmux' >> .bashrc
-RUN echo 'fi' >> .bashrc
+RUN echo 'export TERM=xterm-256color' >> .bashrc \
+&& echo 'if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then' >> .bashrc \
+&& echo 'exec tmux' >> .bashrc \
+&& echo 'fi' >> .bashrc
 # making the prompt pretty. ;)
 RUN rm -rf ~/.bash-git-prompt # remove this if it exists for some reason.
 RUN git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
