@@ -18,7 +18,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # installing packages I like
 RUN apt install aspell -y \
-&& apt install bash-completion \
+&& apt install bash-completion -y \
 && apt install checkinstall -y --fix-missing \
 && apt install clang-tidy -y \
 && apt install ctags -y \
