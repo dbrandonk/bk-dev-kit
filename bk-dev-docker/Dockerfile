@@ -17,32 +17,32 @@ ENV TZ=America/Chicago
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # installing packages I like
-RUN apt install aspell -y \
-&& apt install bash-completion -y \
+RUN apt install aspell -y --fix-missing \
+&& apt install bash-completion -y --fix-missing \
 && apt install checkinstall -y --fix-missing \
-&& apt install clang-tidy -y \
-&& apt install ctags -y \
-&& apt install curl -y \
-&& apt install feh -y \
-&& apt install git -y \
-&& apt install htop -y \
-&& apt install man -y \
-&& apt install pip -y \
-&& apt install pylint -y \
-&& apt install silversearcher-ag -y \
-&& apt install stow -y \
-&& apt install sudo -y \
-&& apt install tig -y \
-&& apt install tldr -y \
-&& apt install tmux -y \
-&& apt install tree -y \
-&& apt install ranger -y \
-&& apt install vim -y \
-&& apt install vim-gtk3 -y \
-&& apt install xclip -y \
-&& apt install wget -y \
-&& apt install wormhole -y \
-&& apt install yamllint -y
+&& apt install clang-tidy -y --fix-missing \
+&& apt install ctags -y --fix-missing \
+&& apt install curl -y --fix-missing \
+&& apt install feh -y --fix-missing \
+&& apt install git -y --fix-missing \
+&& apt install htop -y --fix-missing \
+&& apt install man -y --fix-missing \
+&& apt install pip -y --fix-missing \
+&& apt install pylint -y --fix-missing \
+&& apt install silversearcher-ag -y --fix-missing \
+&& apt install stow -y --fix-missing \
+&& apt install sudo -y --fix-missing \
+&& apt install tig -y --fix-missing \
+&& apt install tldr -y --fix-missing \
+&& apt install tmux -y --fix-missing \
+&& apt install tree -y --fix-missing \
+&& apt install ranger -y --fix-missing \
+&& apt install vim -y --fix-missing \
+&& apt install vim-gtk3 -y --fix-missing \
+&& apt install xclip -y --fix-missing \
+&& apt install wget -y --fix-missing \
+&& apt install wormhole -y --fix-missing \
+&& apt install yamllint -y --fix-missing
 
 RUN pip install autopep8 \
 && pip install ipython \
