@@ -47,7 +47,8 @@ RUN apt install aspell -y --fix-missing \
 RUN pip install autopep8 \
 && pip install ipython \
 && pip install monkeytype \
-&& pip install mypy
+&& pip install mypy \
+&& pip install shell-gp
 
 # fixing install of fzf if there is an issue
 RUN ./.fzf/uninstall || true
