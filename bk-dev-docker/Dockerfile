@@ -48,7 +48,7 @@ RUN pip install autopep8 \
 && pip install ipython \
 && pip install monkeytype \
 && pip install mypy \
-&& pip install shell-gp
+&& pip install shell-gpt
 
 # fixing install of fzf if there is an issue
 RUN ./.fzf/uninstall || true
