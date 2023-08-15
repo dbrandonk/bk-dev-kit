@@ -113,4 +113,4 @@ RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubuserconte
 RUN vim -c ':PlugInstall' -c ':qall'
 RUN mkdir -p .vim/tmp
 
-ENTRYPOINT ["/bin/bash"]
+CMD ["/bin/bash"]
