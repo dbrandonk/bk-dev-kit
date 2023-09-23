@@ -38,6 +38,7 @@ tldr \
 tmux \
 tree \
 ranger \
+ripgrep \
 vim \
 vim-gtk3 \
 xclip \
