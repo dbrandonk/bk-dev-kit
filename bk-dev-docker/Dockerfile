@@ -17,34 +17,9 @@ ENV TZ=America/Chicago
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # installing packages I like
-RUN apt install \
-aspell \
-bash-completion \
-checkinstall \
-clang-tidy \
-ctags \
-curl \
-feh \
-git \
-htop \
-man \
-pip \
-pylint \
-silversearcher-ag \
-stow \
-sudo \
-tig \
-tldr \
-tmux \
-tree \
-ranger \
-ripgrep \
-vim \
-vim-gtk3 \
-xclip \
-wget \
-yamllint \
--y --fix-missing
+COPY apt_packages.txt apt_packages.txt
+RUN apt install $(cat apt_packages.txt) -y --fix-missing 
+RUN rm apt_packages.txt
 
 RUN pip install \
 autopep8 \
