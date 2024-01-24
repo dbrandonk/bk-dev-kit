@@ -2,7 +2,7 @@ aspell
 bash-completion
 checkinstall
 clang-tidy
-ctags
+universal-ctags
 curl
 feh
 git
