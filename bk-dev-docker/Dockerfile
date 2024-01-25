@@ -18,7 +18,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # installing packages I like
 COPY apt_packages.txt apt_packages.txt
-RUN apt install $(cat apt_packages.txt) -y --fix-missing 
+RUN apt install $(cat apt_packages.txt) -y --fix-missing
 RUN rm apt_packages.txt
 
 RUN pip install \
