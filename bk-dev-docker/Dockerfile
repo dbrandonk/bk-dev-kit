@@ -26,8 +26,7 @@ autopep8 \
 ipython \
 magic-wormhole \
 monkeytype \
-mypy \
-shell-gpt
+mypy
 
 # fixing install of fzf if there is an issue
 RUN ./.fzf/uninstall || true
@@ -78,11 +77,6 @@ RUN rm .dotfiles -rf
 # getting my ssh file from my host machine.
 RUN rm .ssh -rf
 ADD .ssh .ssh
-
-# getting latest version of vim
-# RUN git clone https://github.com/vim/vim.git
-# RUN cd vim/src && make && checkinstall --pkgname vim -y
-# RUN rm -rf vim
 
 # All the vim plugins.
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
