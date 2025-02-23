@@ -23,3 +23,17 @@ services:
       - ~/.gitconfig:/root/.gitconfig:ro
       - ~/.ssh:/root/.ssh-localhost:ro
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
+
+  bk-developer-no-gpu:
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    container_name: bk-dev-container
+    environment:
+      DISPLAY: ${DISPLAY}
+    image: bk-dev-docker:latest
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - /dev/shm:/dev/shm
+      - ~/.gitconfig:/root/.gitconfig:ro
+      - ~/.ssh:/root/.ssh-localhost:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
