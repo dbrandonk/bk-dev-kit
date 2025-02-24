@@ -34,7 +34,9 @@ pylint
 # fixing install of fzf if there is an issue
 RUN ./.fzf/uninstall || true
 RUN rm -rf ./.fzf
-RUN apt install fzf -y
+# RUN apt install fzf -y
+RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+RUN ~/.fzf/install --all
 
 # installing google chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -42,7 +44,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install ./google-chrome*.deb -y
 RUN rm -rf ./google-chrome*.deb
 
 # unminimize the docker
-RUN yes | unminimize || true
+# RUN yes | unminimize || true
 
 # git config
 RUN git config --global user.name "Brandon Knape" \
