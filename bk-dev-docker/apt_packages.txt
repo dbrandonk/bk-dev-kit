@@ -8,8 +8,6 @@ feh
 git
 htop
 man
-pip
-pylint
 silversearcher-ag
 stow
 sudo

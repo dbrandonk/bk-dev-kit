@@ -9,8 +9,7 @@ ARG GIT_EMAIL
 # getting apt in a happy state
 RUN apt autoremove --purge \
 && apt clean \
-&& apt update \
-&& apt upgrade -y
+&& apt update -y
 
 # export timezone and place timezone data /etc/timezone
 ENV TZ=America/Chicago
@@ -21,12 +20,16 @@ COPY apt_packages.txt apt_packages.txt
 RUN apt install $(cat apt_packages.txt) -y --fix-missing
 RUN rm apt_packages.txt
 
+# Check if pip is installed, if not install it.
+RUN command -v pip || (apt install -y python3-pip)
+
 RUN pip install \
 autopep8 \
 ipython \
 magic-wormhole \
 monkeytype \
-mypy
+mypy \
+pylint
 
 # fixing install of fzf if there is an issue
 RUN ./.fzf/uninstall || true
