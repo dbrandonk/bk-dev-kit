@@ -96,6 +96,6 @@ RUN git clone https://github.com/dbrandonk/nvchad-starter.git ~/.config/nvim && 
 RUN mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts && wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip && unzip JetBrainsMono.zip && rm -rf JetBrainsMono.zip
 RUN export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim -c ':MasonInstallAll' -c ':qall'
 # I don't like this but I can't find a better solution right now.
-RUN export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim -c ':MasonInstall jedi_language_server' -c ':qall'
+RUN export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim -c ':MasonInstall jedi-language-server' -c ':qall'
 
 CMD ["/bin/bash"]
