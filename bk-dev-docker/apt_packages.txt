@@ -8,6 +8,7 @@ feh
 git
 htop
 man
+python3-venv
 silversearcher-ag
 stow
 sudo
