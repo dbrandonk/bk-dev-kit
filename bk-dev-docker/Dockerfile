@@ -1,5 +1,4 @@
-ARG BASE_IMAGE
-# ubuntu:20.04
+ARG BASE_IMAGE=ubuntu:22.04
 
 FROM ${BASE_IMAGE}
 WORKDIR /root
@@ -70,10 +69,10 @@ RUN echo 'export TERM=xterm-256color' >> .bashrc \
 # making the prompt pretty. ;)
 RUN rm -rf ~/.bash-git-prompt # remove this if it exists for some reason.
 RUN git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
-run echo 'source $HOME/.bash-git-prompt/gitprompt.sh' >> .bashrc
+RUN echo 'source $HOME/.bash-git-prompt/gitprompt.sh' >> .bashrc
 RUN apt-get install locales -y
 RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-ENV LANG en_US.utf8
+ENV LANG=en_US.utf8
 # tmux and vim config files
 RUN mv .dotfiles/.tmux.conf .tmux.conf
 RUN mv .dotfiles/.vimrc .vimrc
@@ -93,7 +92,6 @@ RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linu
 RUN rm -rf /opt/nvim && tar -C /opt -xzf nvim-linux-x86_64.tar.gz && rm -rf nvim-linux-x86_64.tar.gz
 # nvchad
 RUN git clone https://github.com/dbrandonk/nvchad-starter.git ~/.config/nvim && rm -rf ~/.config/nvim/.git
-RUN mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts && wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip && unzip JetBrainsMono.zip && rm -rf JetBrainsMono.zip
 RUN export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim -c ':MasonInstallAll' -c ':qall'
 # I don't like this but I can't find a better solution right now.
 RUN export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim -c ':MasonInstall jedi-language-server' -c ':qall'
