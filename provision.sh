@@ -12,6 +12,7 @@ clang-tidy \
 universal-ctags \
 curl \
 feh \
+find-fd \
 git \
 htop \
 man \
