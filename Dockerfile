@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=ubuntu:22.04
+ARG BASE_IMAGE=ubuntu:24.04
 
 FROM ${BASE_IMAGE}
 WORKDIR /root
@@ -15,7 +15,7 @@ ENV TZ=America/Chicago
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Run a provisioning script
-RUN apt install sudo # In case this is not available before the script is run.
+RUN apt install sudo -y # In case this is not available before the script is run.
 COPY provision.sh provision.sh
 RUN sh provision.sh
 RUN rm provision.sh
