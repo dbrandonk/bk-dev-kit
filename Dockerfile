@@ -14,10 +14,11 @@ RUN apt autoremove --purge \
 ENV TZ=America/Chicago
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# installing packages I like
-COPY apt_packages.txt apt_packages.txt
-RUN apt install $(cat apt_packages.txt) -y --fix-missing
-RUN rm apt_packages.txt
+# Run a provisioning script
+RUN apt install sudo # In case this is not available before the script is run.
+COPY provsion.sh provsion.sh
+RUN sh provision
+RUN rm provsion.sh
 
 # Check if pip is installed, if not install it.
 RUN command -v pip || (apt install -y python3-pip)
