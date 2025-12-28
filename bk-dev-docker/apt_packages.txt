@@ -5,11 +5,11 @@ clang-tidy
 universal-ctags
 curl
 feh
+fd
 git
 htop
 man
 python3-venv
-silversearcher-ag
 stow
 sudo
 tig
@@ -20,6 +20,7 @@ ranger
 ripgrep
 vim
 vim-gtk3
+x11-xserver-utils
 xclip
 wget
 yamllint
