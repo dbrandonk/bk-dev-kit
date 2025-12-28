@@ -5,7 +5,6 @@ clang-tidy
 universal-ctags
 curl
 feh
-fd
 git
 htop
 man
