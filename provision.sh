@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Fail out if a step fails.
+set -eu
+
 sudo apt update
 sudo apt install $(cat bk-dev-docker/apt_packages.txt) -y --fix-missing
 
@@ -8,5 +11,3 @@ sudo apt install $(cat bk-dev-docker/apt_packages.txt) -y --fix-missing
 rm -rf ~/.fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all --no-update-rc
-
-# one day I should do gsettings stuff here.
