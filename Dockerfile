@@ -80,13 +80,11 @@ RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubuserconte
 RUN vim -c ':PlugInstall' -c ':qall'
 RUN mkdir -p .vim/tmp
 
-# nvim
-RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-RUN rm -rf /opt/nvim && tar -C /opt -xzf nvim-linux-x86_64.tar.gz && rm -rf nvim-linux-x86_64.tar.gz
+# Not doing nvchad right now.
 # nvchad
-RUN git clone https://github.com/dbrandonk/nvchad-starter.git ~/.config/nvim && rm -rf ~/.config/nvim/.git
-RUN export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim -c ':qall'
+# RUN git clone https://github.com/dbrandonk/nvchad-starter.git ~/.config/nvim && rm -rf ~/.config/nvim/.git
+# RUN export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim -c ':qall'
 # I don't like this but I can't find a better solution right now.
-RUN export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim -c ':MasonInstall jedi-language-server' -c ':qall'
+# RUN export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim -c ':MasonInstall jedi-language-server' -c ':qall'
 
 CMD ["/bin/bash"]
