@@ -11,8 +11,9 @@ sudo apt install -y --fix-missing \
   clang-tidy \
   universal-ctags \
   curl \
-  feh \
   fd-find \
+  feh \
+  fish \
   git \
   htop \
   man \

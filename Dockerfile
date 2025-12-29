@@ -17,7 +17,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Run a provisioning script
 RUN apt install sudo # In case this is not available before the script is run.
 COPY provision.sh provision.sh
-RUN sh provision.sh
+RUN bash provision.sh
 RUN rm provision.sh
 
 # Check if pip is installed, if not install it.
