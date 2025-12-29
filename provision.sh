@@ -39,6 +39,13 @@ rm -rf ~/.fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all --no-update-rc
 
+# Install lazygit.
+sudo rm -rf /usr/local/bin/lazygit
+curl -Lo /tmp/lazygit_0.57.0_Linux_x86_64.tar.gz https://github.com/jesseduffield/lazygit/releases/download/v0.57.0/lazygit_0.57.0_Linux_x86_64.tar.gz
+tar -C /tmp -xf /tmp/lazygit_0.57.0_Linux_x86_64.tar.gz lazygit
+sudo install /tmp/lazygit /usr/local/bin/lazygit
+rm /tmp/lazygit_0.57.0_Linux_x86_64.tar.gz /tmp/lazygit
+
 # Install nvim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim && sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz && rm -rf nvim-linux-x86_64.tar.gz
