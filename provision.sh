@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Fail out if a step fails.
-set -eu
+set -euo pipefail
 
 sudo apt update
 sudo apt install -y --fix-missing \
