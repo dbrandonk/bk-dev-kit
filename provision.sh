@@ -5,32 +5,32 @@ set -euo pipefail
 
 sudo apt update
 sudo apt install -y --fix-missing \
-aspell \
-bash-completion \
-checkinstall \
-clang-tidy \
-universal-ctags \
-curl \
-feh \
-fd-find \
-git \
-htop \
-man \
-python3-venv \
-stow \
-sudo \
-tig \
-tldr \
-tmux \
-tree \
-ranger \
-ripgrep \
-vim \
-vim-gtk3 \
-x11-xserver-utils \
-xclip \
-wget \
-yamllint
+  aspell \
+  bash-completion \
+  checkinstall \
+  clang-tidy \
+  universal-ctags \
+  curl \
+  feh \
+  fd-find \
+  git \
+  htop \
+  man \
+  python3-venv \
+  stow \
+  sudo \
+  tig \
+  tldr \
+  tmux \
+  tree \
+  ranger \
+  ripgrep \
+  vim \
+  vim-gtk3 \
+  x11-xserver-utils \
+  xclip \
+  wget \
+  yamllint
 
 # Install fzf.
 ~/.fzf/uninstall || true
@@ -40,7 +40,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # Install nvim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-rm -rf /opt/nvim && tar -C /opt -xzf nvim-linux-x86_64.tar.gz && rm -rf nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim && sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz && rm -rf nvim-linux-x86_64.tar.gz
 
 # Install LazyVim
 rm -rf ~/.config/nvim
