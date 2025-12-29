@@ -17,6 +17,7 @@ sudo apt install -y --fix-missing \
   git \
   htop \
   man \
+  pipx \
   python3-venv \
   stow \
   sudo \
@@ -32,6 +33,9 @@ sudo apt install -y --fix-missing \
   xclip \
   wget \
   yamllint
+
+pipx ensurepath
+pipx install ast-grep-cli
 
 # Install fzf.
 ~/.fzf/uninstall || true
