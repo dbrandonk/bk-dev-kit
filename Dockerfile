@@ -41,10 +41,11 @@ RUN rm -rf ./google-chrome*.deb
 # git config
 RUN git config --global user.name "Brandon Knape" \
 && git config --global user.email "$GIT_EMAIL" \
-&& git config --global diff.tool vimdiff \
+&& git config --global core.editor nvim \
+&& git config --global diff.tool nvimdiff \
 && git config --global difftool.prompt false \
 && git config --global difftool.trustExitCode true \
-&& git config --global merge.tool vimdiff \
+&& git config --global merge.tool nvimdiff \
 && git config --global mergetool.prompt false \
 && git config --global mergetool.trustExitCode true \
 && git config --global --add safe.directory '*'
