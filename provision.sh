@@ -16,6 +16,7 @@ sudo apt install -y --fix-missing \
   fish \
   git \
   htop \
+  luarocks \
   man \
   pipx \
   python3-venv \
