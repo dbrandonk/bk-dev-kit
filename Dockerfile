@@ -82,6 +82,13 @@ RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubuserconte
 RUN vim -c ':PlugInstall' -c ':qall'
 RUN mkdir -p .vim/tmp
 
+# Tree-sitter binary for nvim. Need to to this b/c its broken for ubuntu 22.04.
+RUN wget https://github.com/tree-sitter/tree-sitter/releases/download/v0.25.10/tree-sitter-linux-x64.gz
+RUN gunzip tree-sitter-linux-x64.gz
+RUN mv tree-sitter-linux-x64 tree-sitter
+RUN chmod +x tree-sitter
+RUN mv tree-sitter /usr/local/bin/
+
 # Not doing nvchad right now.
 # nvchad
 # RUN git clone https://github.com/dbrandonk/nvchad-starter.git ~/.config/nvim && rm -rf ~/.config/nvim/.git
