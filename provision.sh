@@ -16,6 +16,7 @@ sudo apt install -y --fix-missing \
   fish \
   git \
   htop \
+  imagemagick \
   luarocks \
   man \
   pipx \
@@ -25,6 +26,7 @@ sudo apt install -y --fix-missing \
   tig \
   tldr \
   tmux \
+  trash-cli \
   tree \
   ranger \
   ripgrep \
