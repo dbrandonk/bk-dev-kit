@@ -89,11 +89,4 @@ RUN mv tree-sitter-linux-x64 tree-sitter
 RUN chmod +x tree-sitter
 RUN mv tree-sitter /usr/local/bin/
 
-# Not doing nvchad right now.
-# nvchad
-# RUN git clone https://github.com/dbrandonk/nvchad-starter.git ~/.config/nvim && rm -rf ~/.config/nvim/.git
-# RUN export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim -c ':qall'
-# I don't like this but I can't find a better solution right now.
-# RUN export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim -c ':MasonInstall jedi-language-server' -c ':qall'
-
 CMD ["/bin/bash"]
