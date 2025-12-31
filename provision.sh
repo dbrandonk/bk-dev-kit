@@ -37,6 +37,7 @@ sudo apt install -y --fix-missing \
 
 pipx ensurepath
 pipx install ast-grep-cli
+pipx install pynvim
 
 # Install fzf.
 ~/.fzf/uninstall || true
