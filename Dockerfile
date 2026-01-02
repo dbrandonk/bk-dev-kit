@@ -14,6 +14,14 @@ RUN apt autoremove --purge \
 ENV TZ=America/Chicago
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+# Tree-sitter binary for nvim. Need to to this b/c its broken for ubuntu 22.04.
+RUN apt install wget -y
+RUN wget https://github.com/tree-sitter/tree-sitter/releases/download/v0.25.10/tree-sitter-linux-x64.gz
+RUN gunzip tree-sitter-linux-x64.gz
+RUN mv tree-sitter-linux-x64 tree-sitter
+RUN chmod +x tree-sitter
+RUN mv tree-sitter /usr/local/bin/
+
 # Run a provisioning script
 RUN apt install sudo # In case this is not available before the script is run.
 COPY provision.sh provision.sh
@@ -81,12 +89,5 @@ ADD .ssh .ssh
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 RUN vim -c ':PlugInstall' -c ':qall'
 RUN mkdir -p .vim/tmp
-
-# Tree-sitter binary for nvim. Need to to this b/c its broken for ubuntu 22.04.
-RUN wget https://github.com/tree-sitter/tree-sitter/releases/download/v0.25.10/tree-sitter-linux-x64.gz
-RUN gunzip tree-sitter-linux-x64.gz
-RUN mv tree-sitter-linux-x64 tree-sitter
-RUN chmod +x tree-sitter
-RUN mv tree-sitter /usr/local/bin/
 
 CMD ["/bin/bash"]
