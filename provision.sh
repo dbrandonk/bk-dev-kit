@@ -63,11 +63,10 @@ rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim
 rm -rf ~/.local/state/nvim
 rm -rf ~/.cache/nvim
-git clone https://github.com/LazyVim/starter ~/.config/nvim
+git clone https://github.com/dbrandonk/bk-lazyvim-config.git ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
 # Too lazy to figure out how to do this right.
 # Also probably shooting myself in the foot for not just enabling LazyExtras lang.python.
 # However I was having issues with that in ubuntu 22.04.
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim --headless -c ":Lazy load mason.nvim" -c ':MasonInstall jedi-language-server' -c ':qall'
-echo 'vim.g.lazyvim_python_lsp = "jedi"' >>~/.config/nvim/lua/config/options.lua
