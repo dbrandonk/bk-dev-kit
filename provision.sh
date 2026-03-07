@@ -29,7 +29,6 @@ sudo apt install -y --fix-missing \
   trash-cli \
   tree \
   ranger \
-  ripgrep \
   vim \
   vim-gtk3 \
   x11-xserver-utils \
@@ -40,6 +39,13 @@ sudo apt install -y --fix-missing \
 pipx ensurepath
 pipx install ast-grep-cli
 pipx install pynvim
+
+# install rust
+rustup self uninstall || true
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+. "$HOME/.cargo/env"
+
+cargo install ripgrep --features pcre2
 
 # Install fzf.
 ~/.fzf/uninstall || true
