@@ -61,7 +61,7 @@ sudo install /tmp/lazygit /usr/local/bin/lazygit
 rm /tmp/lazygit_0.57.0_Linux_x86_64.tar.gz /tmp/lazygit
 
 # Install nvim
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+curl -LO https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim && sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz && rm -rf nvim-linux-x86_64.tar.gz
 
 # Install LazyVim
