@@ -58,9 +58,6 @@ RUN git config --global user.name "Brandon Knape" \
 && git config --global mergetool.trustExitCode true \
 && git config --global --add safe.directory '*'
 
-# doing whole bunch of dot file stuff.
-RUN git clone https://github.com/dbrandonk/.dotfiles
-RUN mv .dotfiles/.bashrc-extra .bashrc-extra
 # Doing some hacky writing to the .bashrc
 RUN echo '. $HOME/.bashrc-extra' >> .bashrc
 
@@ -76,10 +73,6 @@ RUN echo 'source $HOME/.bash-git-prompt/gitprompt.sh' >> .bashrc
 RUN apt-get install locales -y
 RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG=en_US.utf8
-# tmux and vim config files
-RUN mv .dotfiles/.tmux.conf .tmux.conf
-RUN mv .dotfiles/.vimrc .vimrc
-RUN rm .dotfiles -rf
 
 # getting my ssh file from my host machine.
 RUN rm .ssh -rf
