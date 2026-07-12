@@ -64,18 +64,17 @@ rm /tmp/lazygit_0.57.0_Linux_x86_64.tar.gz /tmp/lazygit
 curl -LO https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim && sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz && rm -rf nvim-linux-x86_64.tar.gz
 
+# Import bk-configs
+rm -rf ~/.bk-configs
+git clone https://github.com/dbrandonk/bk-configs ~/.bk-configs
+stow --dir="$HOME/.bk-configs" --target="$HOME" bash-extra tmux vim nvim
+
 # Install LazyVim
 rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim
 rm -rf ~/.local/state/nvim
 rm -rf ~/.cache/nvim
-
 # Too lazy to figure out how to do this right.
 # Also probably shooting myself in the foot for not just enabling LazyExtras lang.python.
 # However I was having issues with that in ubuntu 22.04.
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim --headless -c ":Lazy load mason.nvim" -c ':MasonInstall jedi-language-server' -c ':qall'
-
-# Import bk-configs
-rm -rf ~/.bk-configs
-git clone https://github.com/dbrandonk/bk-configs ~/.bk-configs
-stow --dir=~/.bk-configs --target=~ bash tmux vim nvim
