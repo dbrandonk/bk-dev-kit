@@ -60,20 +60,20 @@ tar -C /tmp -xf /tmp/lazygit_0.57.0_Linux_x86_64.tar.gz lazygit
 sudo install /tmp/lazygit /usr/local/bin/lazygit
 rm /tmp/lazygit_0.57.0_Linux_x86_64.tar.gz /tmp/lazygit
 
-# Install nvim
-curl -LO https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim && sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz && rm -rf nvim-linux-x86_64.tar.gz
+# Remove any stale nvim artifacts.
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.cache/nvim
 
 # Import bk-configs
 rm -rf ~/.bk-configs
 git clone https://github.com/dbrandonk/bk-configs ~/.bk-configs
 stow --dir="$HOME/.bk-configs" --target="$HOME" bash-extra tmux vim nvim
 
-# Install LazyVim
-rm -rf ~/.config/nvim
-rm -rf ~/.local/share/nvim
-rm -rf ~/.local/state/nvim
-rm -rf ~/.cache/nvim
+# Install nvim+LazyVim
+curl -LO https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim && sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz && rm -rf nvim-linux-x86_64.tar.gz
 # Too lazy to figure out how to do this right.
 # Also probably shooting myself in the foot for not just enabling LazyExtras lang.python.
 # However I was having issues with that in ubuntu 22.04.
