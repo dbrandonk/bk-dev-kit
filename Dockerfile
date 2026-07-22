@@ -43,6 +43,10 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 RUN DEBIAN_FRONTEND=noninteractive apt install ./google-chrome*.deb -y
 RUN rm -rf ./google-chrome*.deb
 
+# installing opencode
+RUN curl -fsSL https://opencode.ai/install | bash
+ENV PATH="/root/.opencode/bin:$PATH"
+
 # unminimize the docker
 # RUN yes | unminimize || true
 

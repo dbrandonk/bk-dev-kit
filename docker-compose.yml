@@ -23,6 +23,11 @@ services:
       - ~/.gitconfig:/root/.gitconfig:ro
       - ~/.ssh:/root/.ssh-localhost:ro
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - type: bind
+        source: ~/.config/opencode
+        target: /root/.config/opencode
+        bind:
+          create_host_path: true
 
   bk-developer-no-gpu:
     command: /bin/sh -c "while sleep 1000; do :; done"
@@ -37,3 +42,8 @@ services:
       - ~/.gitconfig:/root/.gitconfig:ro
       - ~/.ssh:/root/.ssh-localhost:ro
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - type: bind
+        source: ~/.config/opencode
+        target: /root/.config/opencode
+        bind:
+          create_host_path: true
