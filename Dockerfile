@@ -45,7 +45,6 @@ RUN rm -rf ./google-chrome*.deb
 
 # installing opencode
 RUN curl -fsSL https://opencode.ai/install | bash
-ENV PATH="/root/.opencode/bin:$PATH"
 
 # unminimize the docker
 # RUN yes | unminimize || true
