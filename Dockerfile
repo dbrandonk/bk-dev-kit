@@ -24,9 +24,10 @@ RUN mv tree-sitter /usr/local/bin/
 
 # Run a provisioning script
 RUN apt install sudo # In case this is not available before the script is run.
-COPY provision.sh provision.sh
-RUN bash provision.sh
-RUN rm provision.sh
+
+COPY provision.sh /root/.bk-dev-kit/provision.sh
+COPY configs /root/.bk-dev-kit/configs
+RUN bash /root/.bk-dev-kit/provision.sh
 
 # Check if pip is installed, if not install it.
 RUN command -v pip || (apt install -y python3-pip)

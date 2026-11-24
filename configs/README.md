@@ -18,12 +18,12 @@ Managed with [GNU Stow](https://www.gnu.org/software/stow/).
 ## Setup on a new machine
 
 ```bash
-git clone https://github.com/dbrandonk/bk-configs.git
-cd bk-configs
+git clone https://github.com/dbrandonk/bk-dev-kit.git
+cd bk-dev-kit/configs
 stow --target="$HOME" bash bash-extra tmux vim cosmic nvim claude
 ```
 
-That's it, stow creates symlinks from `~` back into `bk-configs`.
+That's it, stow creates symlinks from `~` back into `bk-dev-kit/configs`.
 
 ## Common commands
 

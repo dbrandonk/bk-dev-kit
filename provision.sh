@@ -66,10 +66,9 @@ rm -rf ~/.local/share/nvim
 rm -rf ~/.local/state/nvim
 rm -rf ~/.cache/nvim
 
-# Import bk-configs
-rm -rf ~/.bk-configs
-git clone https://github.com/dbrandonk/bk-configs ~/.bk-configs
-stow --dir="$HOME/.bk-configs" --target="$HOME" bash-extra tmux vim nvim
+# Link configs
+CONFIGS_DIR="$(dirname "$(realpath "$0")")/configs"
+stow --dir="$CONFIGS_DIR" --target="$HOME" bash-extra tmux vim nvim
 
 # Install nvim+LazyVim
 curl -LO https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-x86_64.tar.gz
