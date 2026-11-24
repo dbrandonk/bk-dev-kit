@@ -12,7 +12,7 @@ Managed with [GNU Stow](https://www.gnu.org/software/stow/).
 | `vim` | `.vimrc` | `~` |
 | `cosmic` | `.config/cosmic/` | `~` |
 | `nvim` | `.config/nvim/` | `~` |
-| `claude` | `.claude/settings.json`, `.claude/CLAUDE.md` | `~` |
+| `claude` | `.claude/settings.json`, `.claude/CLAUDE.md`, `.claude/skills/` | `~` |
 | `glzr` | `.glzr/glazewm/config.yaml` | (`glzr` is for Windows only. Do not use stow `glzr`.) |
 
 ## Setup on a new machine

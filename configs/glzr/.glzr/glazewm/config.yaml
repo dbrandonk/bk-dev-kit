@@ -294,7 +294,7 @@ keybindings:
     bindings: ['alt+shift+s']
   # Move focused window to an across-display workspace, then show all 3
   # displays. The window lands on the LEFT display (monitor 0) and focus
-  # follows it there. Nudge it across with alt+shift+arrow if you want it
+  # follows it there. Nudge it across with alt+shift+h/l if you want it
   # on the center or right display.
   - commands: ['move --workspace 1a', 'focus --workspace 1b', 'focus --workspace 1c', 'focus --workspace 1a']
     bindings: ['alt+shift+1']
