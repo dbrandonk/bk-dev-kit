@@ -1,0 +1,9 @@
+{
+    // Free the arrow keys from Cosmic's default Super-bound window Focus so
+    // they're available to pass through to apps (e.g. tmux). hjkl Focus
+    // bindings are left untouched.
+    (modifiers: [Super], key: "Left"): Disable,
+    (modifiers: [Super], key: "Right"): Disable,
+    (modifiers: [Super], key: "Up"): Disable,
+    (modifiers: [Super], key: "Down"): Disable,
+}

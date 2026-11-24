@@ -1,0 +1,9 @@
+{
+  "tui": "fullscreen",
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Read(/**)"
+    ]
+  }
+}
