@@ -41,7 +41,7 @@ pipx ensurepath
 pipx install ast-grep-cli pynvim
 
 # install rust
-rustup self uninstall || true
+yes | rustup self uninstall || true
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
 
