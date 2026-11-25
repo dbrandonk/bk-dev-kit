@@ -9,7 +9,6 @@ sudo apt install -y --fix-missing \
   bash-completion \
   checkinstall \
   clang-tidy \
-  universal-ctags \
   curl \
   fd-find \
   feh \
@@ -21,6 +20,8 @@ sudo apt install -y --fix-missing \
   man \
   pipx \
   python3-venv \
+  ranger \
+  silversearcher-ag \
   stow \
   sudo \
   tig \
@@ -28,18 +29,16 @@ sudo apt install -y --fix-missing \
   tmux \
   trash-cli \
   tree \
-  ranger \
-  silversearcher-ag \
+  universal-ctags \
   vim \
   vim-gtk3 \
+  wget \
   x11-xserver-utils \
   xclip \
-  wget \
   yamllint
 
 pipx ensurepath
-pipx install ast-grep-cli
-pipx install pynvim
+pipx install ast-grep-cli pynvim
 
 # install rust
 rustup self uninstall || true
