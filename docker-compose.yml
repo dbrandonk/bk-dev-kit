@@ -8,9 +8,23 @@ x-common: &common
   network_mode: "host"
   shm_size: "8gb"
   volumes:
-    - ~/.gitconfig:/root/.gitconfig:ro
-    - ~/.ssh:/root/.ssh:ro
-    - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    - type: bind
+      source: ~/.gitconfig
+      target: /root/.gitconfig
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: ~/.ssh
+      target: /root/.ssh
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /tmp/.X11-unix
+      target: /tmp/.X11-unix
+      bind:
+        create_host_path: true
     - type: bind
       source: ~/.config/opencode
       target: /root/.config/opencode
