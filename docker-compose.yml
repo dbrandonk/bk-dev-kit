@@ -1,9 +1,26 @@
 ---
+# Settings shared by both services.
+x-common: &common
+  command: /bin/sh -c "while sleep 1000; do :; done"
+  container_name: bk-dev-container
+  image: bk-dev-docker:latest
+  network_mode: "host"
+  privileged: true
+  volumes:
+    - /dev/shm:/dev/shm
+    - ~/.gitconfig:/root/.gitconfig:ro
+    - ~/.ssh:/root/.ssh:ro
+    - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    - type: bind
+      source: ~/.config/opencode
+      target: /root/.config/opencode
+      bind:
+        create_host_path: true
+
 services:
 
   bk-developer:
-    command: /bin/sh -c "while sleep 1000; do :; done"
-    container_name: bk-dev-container
+    <<: *common
     deploy:
       resources:
         reservations:
@@ -14,36 +31,9 @@ services:
       DISPLAY: ${DISPLAY}
       NVIDIA_DRIVER_CAPABILITIES: all
       NVIDIA_VISIBLE_DEVICES: all
-    image: bk-dev-docker:latest
-    network_mode: "host"
-    privileged: true
     runtime: nvidia
-    volumes:
-      - /dev/shm:/dev/shm
-      - ~/.gitconfig:/root/.gitconfig:ro
-      - ~/.ssh:/root/.ssh-localhost:ro
-      - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - type: bind
-        source: ~/.config/opencode
-        target: /root/.config/opencode
-        bind:
-          create_host_path: true
 
   bk-developer-no-gpu:
-    command: /bin/sh -c "while sleep 1000; do :; done"
-    container_name: bk-dev-container
+    <<: *common
     environment:
       DISPLAY: ${DISPLAY}
-    image: bk-dev-docker:latest
-    network_mode: "host"
-    privileged: true
-    volumes:
-      - /dev/shm:/dev/shm
-      - ~/.gitconfig:/root/.gitconfig:ro
-      - ~/.ssh:/root/.ssh-localhost:ro
-      - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - type: bind
-        source: ~/.config/opencode
-        target: /root/.config/opencode
-        bind:
-          create_host_path: true
