@@ -154,7 +154,7 @@ fi
 
 dev()
 (
- xhost +local:root
+ xhost +SI:localuser:root
 
  # Try to exec into the dev container, if it's running
  if docker exec -it bk-dev-container /bin/bash; then :
@@ -175,7 +175,7 @@ dev()
 dev-stop()
 (
    docker compose -f "$BK_DEV_KIT/docker-compose.yml" down
-   xhost -local:root
+   xhost -SI:localuser:root
 )
 
 dev-build-spec()
