@@ -73,7 +73,3 @@ stow --dir="$CONFIGS_DIR" --target="$HOME" bash-extra tmux vim nvim
 # Install nvim+LazyVim
 curl -LO https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim && sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz && rm -rf nvim-linux-x86_64.tar.gz
-# Too lazy to figure out how to do this right.
-# Also probably shooting myself in the foot for not just enabling LazyExtras lang.python.
-# However I was having issues with that in ubuntu 22.04.
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin" && nvim --headless -c ":Lazy load mason.nvim" -c ':MasonInstall jedi-language-server' -c ':qall'
