@@ -201,6 +201,17 @@ stty -ixon
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 #####################################################################################
+# enable rust tools
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+#####################################################################################
+# enable pipx/uv tools
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+
+#####################################################################################
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).

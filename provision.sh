@@ -37,12 +37,11 @@ sudo apt install -y --fix-missing \
   xclip \
   yamllint
 
-pipx ensurepath
 pipx install ast-grep-cli pynvim
 
 # install rust
 yes | rustup self uninstall || true
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 . "$HOME/.cargo/env"
 
 cargo install ripgrep --features pcre2
