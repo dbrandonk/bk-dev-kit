@@ -36,6 +36,14 @@ x-common: &common
       target: /root/.config/opencode
       bind:
         create_host_path: true
+    - type: bind
+      source: ./configs/claude/.claude/CLAUDE.md
+      target: /root/.claude/CLAUDE.md
+      read_only: true
+    - type: bind
+      source: ./configs/claude/.claude/skills
+      target: /root/.claude/skills
+      read_only: true
 
 services:
 
