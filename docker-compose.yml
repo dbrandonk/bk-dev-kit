@@ -21,6 +21,12 @@ x-common: &common
       bind:
         create_host_path: true
     - type: bind
+      source: ~/.aws
+      target: /root/.aws
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
       source: /tmp/.X11-unix
       target: /tmp/.X11-unix
       bind:
