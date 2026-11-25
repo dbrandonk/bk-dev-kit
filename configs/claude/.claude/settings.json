@@ -1,5 +1,6 @@
 {
   "tui": "fullscreen",
+  "autoMemoryEnabled": false,
   "permissions": {
     "allow": [
       "WebSearch",
