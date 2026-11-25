@@ -183,8 +183,8 @@ dev-build-home()
 
 #####################################################################################
 # Default editor
-export VISUAL=vim;
-export EDITOR=vim;
+export VISUAL=nvim;
+export EDITOR=nvim;
 
 #####################################################################################
 # Misc exports
