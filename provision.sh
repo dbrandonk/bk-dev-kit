@@ -39,6 +39,11 @@ sudo apt install -y --fix-missing \
 
 pipx install ast-grep-cli pynvim
 
+# uv (only if missing), then magic-wormhole as a uv tool.
+export PATH="$HOME/.local/bin:$PATH"
+command -v uv || curl -LsSf https://astral.sh/uv/install.sh | sh -s -- --no-modify-path
+uv tool install magic-wormhole
+
 # install rust
 yes | rustup self uninstall || true
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
