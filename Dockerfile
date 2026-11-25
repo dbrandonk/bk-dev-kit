@@ -10,10 +10,6 @@ RUN apt autoremove --purge \
 && apt clean \
 && apt update -y
 
-# export timezone and place timezone data /etc/timezone
-ENV TZ=America/Chicago
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
 RUN apt install -y sudo wget
 
 # Tree-sitter binary for nvim. Need to do this b/c its broken for ubuntu 22.04.
@@ -42,6 +38,7 @@ RUN curl -fsSL https://opencode.ai/install | bash
 
 # unminimize the docker
 # RUN yes | unminimize || true
+
 RUN git config --system --add safe.directory '*'
 
 # making the prompt pretty. ;)
