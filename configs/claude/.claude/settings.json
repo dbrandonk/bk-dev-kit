@@ -4,6 +4,9 @@
     "allow": [
       "WebSearch",
       "Read(/**)"
+    ],
+    "deny": [
+      "Read(~/.ssh/**)"
     ]
   }
 }
