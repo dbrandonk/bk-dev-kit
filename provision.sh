@@ -29,6 +29,7 @@ sudo apt install -y --fix-missing \
   trash-cli \
   tree \
   ranger \
+  silversearcher-ag \
   vim \
   vim-gtk3 \
   x11-xserver-utils \
