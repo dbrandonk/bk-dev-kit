@@ -1,12 +1,13 @@
 ---
 # Settings shared by both services.
 x-common: &common
-  command: /bin/sh -c "while sleep 1000; do :; done"
+  command: sleep infinity
   container_name: bk-dev-container
   image: bk-dev-docker:latest
+  init: true
   network_mode: "host"
+  shm_size: "8gb"
   volumes:
-    - /dev/shm:/dev/shm
     - ~/.gitconfig:/root/.gitconfig:ro
     - ~/.ssh:/root/.ssh:ro
     - /tmp/.X11-unix:/tmp/.X11-unix:rw
