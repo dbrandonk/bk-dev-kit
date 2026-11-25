@@ -3,7 +3,7 @@ ARG BASE_IMAGE=ubuntu:22.04
 FROM ${BASE_IMAGE}
 WORKDIR /root
 
-ARG GIT_EMAIL
+ARG DEBIAN_FRONTEND=noninteractive
 
 # getting apt in a happy state
 RUN apt autoremove --purge \
@@ -14,77 +14,55 @@ RUN apt autoremove --purge \
 ENV TZ=America/Chicago
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# Tree-sitter binary for nvim. Need to to this b/c its broken for ubuntu 22.04.
-RUN apt install wget -y
-RUN wget https://github.com/tree-sitter/tree-sitter/releases/download/v0.25.10/tree-sitter-linux-x64.gz
-RUN gunzip tree-sitter-linux-x64.gz
-RUN mv tree-sitter-linux-x64 tree-sitter
-RUN chmod +x tree-sitter
-RUN mv tree-sitter /usr/local/bin/
+RUN apt install -y sudo wget
 
-# Run a provisioning script
-RUN apt install sudo # In case this is not available before the script is run.
+# Tree-sitter binary for nvim. Need to do this b/c its broken for ubuntu 22.04.
+RUN wget -qO- https://github.com/tree-sitter/tree-sitter/releases/download/v0.25.10/tree-sitter-linux-x64.gz \
+  | gunzip > /usr/local/bin/tree-sitter \
+&& chmod +x /usr/local/bin/tree-sitter
 
+# Run provisioning script
 COPY provision.sh /root/.bk-dev-kit/provision.sh
 COPY configs /root/.bk-dev-kit/configs
 RUN bash /root/.bk-dev-kit/provision.sh
 
-# Check if pip is installed, if not install it.
-RUN command -v pip || (apt install -y python3-pip)
+# uv (only if missing), then magic-wormhole as a uv tool.
+ENV PATH="/root/.local/bin:$PATH"
+RUN command -v uv || curl -LsSf https://astral.sh/uv/install.sh | sh
+RUN uv tool install magic-wormhole
 
-RUN pip install \
-black \
-ipython \
-magic-wormhole \
-mypy \
-pylint
-
-# installing google chrome
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-RUN DEBIAN_FRONTEND=noninteractive apt install ./google-chrome*.deb -y
-RUN rm -rf ./google-chrome*.deb
+# installing firefox
+RUN apt install -y software-properties-common \
+&& add-apt-repository -y ppa:mozillateam/ppa \
+&& printf 'Package: *\nPin: release o=LP-PPA-mozillateam\nPin-Priority: 1001\n' > /etc/apt/preferences.d/mozilla-firefox \
+&& apt install -y firefox
 
 # installing opencode
 RUN curl -fsSL https://opencode.ai/install | bash
 
 # unminimize the docker
 # RUN yes | unminimize || true
-
-# git config
-RUN git config --global user.name "Brandon Knape" \
-&& git config --global user.email "$GIT_EMAIL" \
-&& git config --global core.editor nvim \
-&& git config --global diff.tool nvimdiff \
-&& git config --global difftool.prompt false \
-&& git config --global difftool.trustExitCode true \
-&& git config --global merge.tool nvimdiff \
-&& git config --global mergetool.prompt false \
-&& git config --global mergetool.trustExitCode true \
-&& git config --global --add safe.directory '*'
-
-# Doing some hacky writing to the .bashrc
-RUN echo '. $HOME/.bashrc-extra' >> .bashrc
-
-# Hacky tmux stuff. Too lazy to fix rn.
-RUN echo 'if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then' >> .bashrc \
-&& echo 'exec tmux' >> .bashrc \
-&& echo 'fi' >> .bashrc
+RUN git config --system --add safe.directory '*'
 
 # making the prompt pretty. ;)
-RUN rm -rf ~/.bash-git-prompt # remove this if it exists for some reason.
-RUN git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
-RUN echo 'source $HOME/.bash-git-prompt/gitprompt.sh' >> .bashrc
-RUN apt-get install locales -y
-RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+RUN rm -rf ~/.bash-git-prompt \
+&& git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
+RUN apt-get install locales -y \
+&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG=en_US.utf8
 
-# getting my ssh file from my host machine.
-RUN rm .ssh -rf
-ADD .ssh .ssh
+# Hook .bashrc-extra, auto-start tmux, and the git prompt into the .bashrc.
+RUN { \
+  echo '. $HOME/.bashrc-extra'; \
+  echo 'if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then'; \
+  echo 'exec tmux'; \
+  echo 'fi'; \
+  echo 'source $HOME/.bash-git-prompt/gitprompt.sh'; \
+} >> .bashrc
 
 # All the vim plugins.
-RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-RUN vim -c ':PlugInstall' -c ':qall'
-RUN mkdir -p .vim/tmp
+RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
+&& vim -c ':PlugInstall' -c ':qall' \
+&& mkdir -p .vim/tmp
 
 CMD ["/bin/bash"]
