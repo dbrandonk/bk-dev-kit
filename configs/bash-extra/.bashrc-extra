@@ -178,14 +178,9 @@ dev-stop()
    xhost -SI:localuser:root
 )
 
-dev-build-spec()
+dev-build()
 (
- docker build --build-arg BASE_IMAGE=$1 -t bk-dev-docker:latest "$BK_DEV_KIT"
-)
-
-dev-build-home()
-(
- dev-build-spec home-dev
+ docker build --build-arg BASE_IMAGE=bk-base:latest -t bk-dev-docker:latest "$BK_DEV_KIT"
 )
 
 #####################################################################################
