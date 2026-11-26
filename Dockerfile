@@ -10,17 +10,17 @@ RUN apt autoremove --purge \
 && apt clean \
 && apt update -y
 
-RUN apt install -y sudo
-
-# Run provisioning script
-COPY provision.sh /root/.bk-dev-kit/provision.sh
-COPY configs /root/.bk-dev-kit/configs
-RUN bash /root/.bk-dev-kit/provision.sh
+RUN apt install -y sudo wget
 
 # Tree-sitter binary for nvim. Need to do this b/c its broken for ubuntu 22.04.
 RUN wget -qO- https://github.com/tree-sitter/tree-sitter/releases/download/v0.25.10/tree-sitter-linux-x64.gz \
   | gunzip > /usr/local/bin/tree-sitter \
 && chmod +x /usr/local/bin/tree-sitter
+
+# Run provisioning script
+COPY provision.sh /root/.bk-dev-kit/provision.sh
+COPY configs /root/.bk-dev-kit/configs
+RUN bash /root/.bk-dev-kit/provision.sh
 
 # installing firefox
 RUN apt install -y software-properties-common \

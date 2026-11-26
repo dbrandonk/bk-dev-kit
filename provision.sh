@@ -4,7 +4,7 @@
 set -euo pipefail
 
 sudo apt update
-sudo apt install -y --fix-missing \
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --fix-missing \
   aspell \
   bash-completion \
   checkinstall \
@@ -37,12 +37,13 @@ sudo apt install -y --fix-missing \
   xclip \
   yamllint
 
-pipx install ast-grep-cli pynvim
+pipx install --force ast-grep-cli
+pipx install --force pynvim
 
 # uv (only if missing), then magic-wormhole as a uv tool.
 export PATH="$HOME/.local/bin:$PATH"
 command -v uv || curl -LsSf https://astral.sh/uv/install.sh | sh -s -- --no-modify-path
-uv tool install magic-wormhole
+uv tool install --force magic-wormhole
 
 # install rust
 yes | rustup self uninstall || true
@@ -72,8 +73,14 @@ rm -rf ~/.cache/nvim
 
 # Link configs
 CONFIGS_DIR="$(dirname "$(realpath "$0")")/configs"
-stow --dir="$CONFIGS_DIR" --target="$HOME" bash-extra tmux vim nvim
+mkdir -p ~/.config
+if ! stow --restow --dir="$CONFIGS_DIR" --target="$HOME" bash-extra tmux vim nvim; then
+  echo "ERROR: stow could not link the configs. A real file (not a stow link) already existed."
+  exit 1
+fi
 
 # Install nvim+LazyVim
-curl -LO https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim && sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz && rm -rf nvim-linux-x86_64.tar.gz
+curl -Lo /tmp/nvim-linux-x86_64.tar.gz https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim-linux-x86_64
+sudo tar -C /opt -xzf /tmp/nvim-linux-x86_64.tar.gz
+rm /tmp/nvim-linux-x86_64.tar.gz
