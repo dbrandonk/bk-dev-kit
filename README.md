@@ -13,6 +13,7 @@ It has a matrix over Ubuntu versions, so it expands into one build target per ve
 |----------------|----------------|------------------------------|
 | `ubuntu-22-04` | `ubuntu:22.04` | `bk-dev-docker:ubuntu-22.04` |
 | `ubuntu-24-04` | `ubuntu:24.04` | `bk-dev-docker:ubuntu-24.04` |
+| `ubuntu-26-04` | `ubuntu:26.04` | `bk-dev-docker:ubuntu-26.04` |
 
 To test build every base images run:
 ```bash

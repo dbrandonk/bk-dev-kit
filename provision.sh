@@ -25,7 +25,6 @@ sudo DEBIAN_FRONTEND=noninteractive apt install -y --fix-missing \
   stow \
   sudo \
   tig \
-  tldr \
   tmux \
   trash-cli \
   tree \

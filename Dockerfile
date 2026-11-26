@@ -40,7 +40,7 @@ RUN git config --system --add safe.directory '*'
 RUN rm -rf ~/.bash-git-prompt \
 && git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
 RUN apt-get install locales -y \
-&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+&& localedef -i en_US -c -f UTF-8 en_US.UTF-8
 ENV LANG=en_US.utf8
 
 # Hook .bashrc-extra, auto-start tmux, and the git prompt into the .bashrc.
